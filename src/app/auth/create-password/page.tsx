@@ -1,4 +1,3 @@
-"use client";
 import CreateNewPasswordForm from "@/components/CreateNewPasswordForm";
 import React, { Suspense } from "react";
 

@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { getUserById } from "./actions/user-actions";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./prisma/prisma";
 import authConfig from "./auth.config";
@@ -14,7 +13,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async session({ session, token }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
-        session.user.customExpiration = token?.expiration as number;
       }
 
       return session;
