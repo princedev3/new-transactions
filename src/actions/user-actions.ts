@@ -2,13 +2,17 @@
 import prisma from "@/prisma/prisma";
 
 export const getUserByEmail = async (email: string) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      email: email,
-    },
-  });
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
 
-  return user;
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getVerificationTokenByEmail = async (email: string) => {

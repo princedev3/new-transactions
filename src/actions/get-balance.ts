@@ -1,7 +1,6 @@
 "use server";
 import { auth } from "@/auth";
 import prisma from "@/prisma/prisma";
-import { revalidatePath } from "next/cache";
 
 export const getBalance = async () => {
   try {

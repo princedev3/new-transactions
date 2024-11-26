@@ -1,3 +1,4 @@
+"use server";
 import { v4 as uuid4 } from "uuid";
 import { getVerificationTokenByEmail } from "./user-actions";
 import prisma from "@/prisma/prisma";
