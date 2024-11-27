@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -48,55 +48,57 @@ const CreateNewPasswordForm = () => {
     });
   };
   return (
-    <Card className=" w-full max-w-3xl mx-auto grid  p-4">
-      {!success && (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>New Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="******"
-                        type="password"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormError message={error} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Card className=" w-full max-w-3xl mx-auto grid  p-4">
+        {!success && (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>New Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          disabled={isPending}
+                          placeholder="******"
+                          type="password"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormError message={error} />
 
-            <Button
-              type="submit"
-              className="w-full disabled:cursor-not-allowed"
-              disabled={isPending}
-            >
-              {isPending ? (
-                <Loader2 className="size-5 animate-spin" />
-              ) : (
-                "Reset password"
-              )}
+              <Button
+                type="submit"
+                className="w-full disabled:cursor-not-allowed"
+                disabled={isPending}
+              >
+                {isPending ? (
+                  <Loader2 className="size-5 animate-spin" />
+                ) : (
+                  "Reset password"
+                )}
+              </Button>
+            </form>
+          </Form>
+        )}
+        {success && (
+          <div className="grid gap-y-4">
+            <FormSuccess message={success} />
+            <Button type="button" className="w-full">
+              <Link href={"/auth/login"}> Login</Link>
             </Button>
-          </form>
-        </Form>
-      )}
-      {success && (
-        <div className="grid gap-y-4">
-          <FormSuccess message={success} />
-          <Button type="button" className="w-full">
-            <Link href={"/auth/login"}> Login</Link>
-          </Button>
-        </div>
-      )}
-    </Card>
+          </div>
+        )}
+      </Card>
+    </Suspense>
   );
 };
 

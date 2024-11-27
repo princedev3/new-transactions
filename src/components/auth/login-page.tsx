@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { Suspense, useState, useTransition } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -50,61 +50,66 @@ const LoginPages = () => {
     });
   }
   return (
-    <div className="grid place-items-center h-screen ">
-      <Card className="grid max-w-xl w-full gap-4">
-        <CardTitle className="text-center text-2xl mt-3 text-blue-950">
-          Welcome to login
-        </CardTitle>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="capitalize">email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="email" {...field} />
-                    </FormControl>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="grid place-items-center h-screen ">
+        <Card className="grid max-w-xl w-full gap-4">
+          <CardTitle className="text-center text-2xl mt-3 text-blue-950">
+            Welcome to login
+          </CardTitle>
+          <CardContent>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="capitalize">email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="email" {...field} />
+                      </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="capitalize">password</FormLabel>
-                    <FormControl>
-                      <Input placeholder="password" {...field} />
-                    </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="capitalize">password</FormLabel>
+                      <FormControl>
+                        <Input placeholder="password" {...field} />
+                      </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Link href="/auth/reset" className="text-sm text-gray-700">
-                Forgot password?
-              </Link>
-              <FormError message={error} />
-              <FormSuccess message={success} />
-              <Button className="w-full" type="submit">
-                Submit
-              </Button>
-            </form>
-          </Form>
-          <Link
-            href="/auth/register"
-            className="text-center my-3 text-gray-400 underline cursor-pointer mx-auto flex items-center justify-center"
-          >
-            click here to create an account
-          </Link>
-        </CardContent>
-      </Card>
-    </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Link href="/auth/reset" className="text-sm text-gray-700">
+                  Forgot password?
+                </Link>
+                <FormError message={error} />
+                <FormSuccess message={success} />
+                <Button className="w-full" type="submit">
+                  Submit
+                </Button>
+              </form>
+            </Form>
+            <Link
+              href="/auth/register"
+              className="text-center my-3 text-gray-400 underline cursor-pointer mx-auto flex items-center justify-center"
+            >
+              click here to create an account
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+    </Suspense>
   );
 };
 

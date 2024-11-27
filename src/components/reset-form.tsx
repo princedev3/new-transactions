@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import {
   Form,
   FormControl,
@@ -45,42 +45,44 @@ export const ResetForm = () => {
   };
 
   return (
-    <Card className="max-w-3xl grid w-full mx-auto">
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="john.doe@example.com"
-                        type="email"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Card className="max-w-3xl grid w-full mx-auto">
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          disabled={isPending}
+                          placeholder="john.doe@example.com"
+                          type="email"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormError message={error} />
+              <FormSuccess message={success} />
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? (
+                  <Loader2 className="size-5 animate-spin" />
+                ) : (
+                  "Send reset email"
                 )}
-              />
-            </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
-            <Button type="submit" className="w-full" disabled={isPending}>
-              {isPending ? (
-                <Loader2 className="size-5 animate-spin" />
-              ) : (
-                "Send reset email"
-              )}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </Suspense>
   );
 };
