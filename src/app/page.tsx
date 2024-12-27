@@ -3,7 +3,9 @@ import DisplayUserBalance from "@/components/display-user-balance";
 import History from "@/components/history";
 import { Card, CardContent } from "@/components/ui/card";
 import { Suspense } from "react";
+
 export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <Suspense>
