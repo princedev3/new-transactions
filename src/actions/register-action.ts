@@ -1,6 +1,6 @@
 "use server";
 import { registerSchema } from "@/schema";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { getUserByEmail } from "./user-actions";
 import prisma from "@/prisma/prisma";
 import { generateVerificationToken } from "./token";
