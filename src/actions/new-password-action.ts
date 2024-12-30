@@ -1,5 +1,5 @@
 "use server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import * as z from "zod";
 import { getUserByEmail } from "./user-actions";
 import { NewPasswordSchema } from "@/schema";
