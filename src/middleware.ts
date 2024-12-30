@@ -1,15 +1,29 @@
-import { NextRequest, NextResponse } from "next/server";
-import { currentUser } from "@/current-user";
+import NextAuth from "next-auth";
+import authConfig from "./auth.config";
+import { NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const session = await currentUser();
+const { auth: middleware } = NextAuth(authConfig);
 
-  if (!session) {
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+export default middleware(async (req) => {
+  try {
+    const isLoggedIn = req.auth;
+
+    const { nextUrl } = req;
+
+    if (nextUrl.pathname === "/") {
+      if (isLoggedIn) {
+        return NextResponse.next();
+      }
+
+      return NextResponse.redirect(new URL("/auth/login", nextUrl));
+    }
+
+    return NextResponse.next();
+  } catch (error) {
+    return NextResponse.redirect(new URL("/auth/register", req.nextUrl));
   }
-  console.log("middleware", session);
-  return NextResponse.next();
-}
+});
+
 export const config = {
   matcher: ["/"],
 };

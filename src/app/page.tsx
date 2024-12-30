@@ -12,7 +12,7 @@ export default function Home() {
       <div className="grid place-items-center min-h-screen ">
         <Card className="mx-auto grid w-full max-w-3xl p-4">
           <CardContent>
-            <div className="grid  sm:grid-cols-2 content-start gap-5">
+            <div className="grid sm:grid-cols-2 content-start gap-5">
               <div className="grid gap-y-3 content-start">
                 <DisplayUserBalance />
                 <AddTransaction />
