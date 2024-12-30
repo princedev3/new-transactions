@@ -11,6 +11,9 @@ const History = async () => {
   const allTransactions: { history: Transaction[]; error: string } =
     await findHistory(session?.user?.id as string);
 
+  if (allTransactions.history.length === 0) {
+    return null;
+  }
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div>
