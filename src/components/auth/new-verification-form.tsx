@@ -47,7 +47,7 @@ const NewNerificationForm = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="grid place-items-center h-screen ">
+      <div className="grid  ">
         <Card className="grid max-w-xl mx-auto w-full gap-4">
           <CardHeader>
             <CardTitle className="text-center text-2xl text-blue-950">

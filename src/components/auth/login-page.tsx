@@ -51,8 +51,8 @@ const LoginPages = () => {
   }
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="grid place-items-center h-screen ">
-        <Card className="grid max-w-xl w-full gap-4">
+      <div className="grid mx-auto ">
+        <Card className="grid mx-auto max-w-xl w-full gap-4">
           <CardTitle className="text-center text-2xl mt-3 text-blue-950">
             Welcome to login
           </CardTitle>

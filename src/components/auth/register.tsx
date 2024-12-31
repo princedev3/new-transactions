@@ -54,7 +54,7 @@ const Register = () => {
   }
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="h-screen  grid place-items-center">
+      <div className="  grid">
         <Card className="grid w-full  mx-auto max-w-xl  gap-4 p-4">
           <CardHeader className="text-center text-2xl font-bold capitalize">
             register

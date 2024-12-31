@@ -31,11 +31,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <SessionProvider session={session}>
-          <Navbar />
-          {children}
+          <div className="">
+            <Navbar />
+            {children}
+          </div>
           <Toaster position="top-right" />
         </SessionProvider>
       </body>

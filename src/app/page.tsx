@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <Suspense>
-      <div className="grid place-items-center min-h-screen ">
+      <div className="grid   ">
         <Card className="mx-auto grid w-full max-w-3xl p-4">
           <CardContent>
             <div
