@@ -61,7 +61,7 @@ export const ResetForm = () => {
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="john.doe@example.com"
+                          placeholder="Enter your email"
                           type="email"
                         />
                       </FormControl>
@@ -76,7 +76,7 @@ export const ResetForm = () => {
                 {isPending ? (
                   <Loader2 className="size-5 animate-spin" />
                 ) : (
-                  "Send reset email"
+                  "Reset Password"
                 )}
               </Button>
             </form>
