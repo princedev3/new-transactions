@@ -32,7 +32,7 @@ export default async function Home() {
                 <AddTransaction />
               </div>
               {allTransactions.history.length === 0 ? null : (
-                <div className="grid h-[90vh] overflow-y-scroll pr-5 custom-scroll-bar">
+                <div className="grid h-[90vh] overflow-y-auto pr-5 custom-scroll-bar">
                   <History />
                 </div>
               )}
